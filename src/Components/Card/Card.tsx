@@ -7,8 +7,8 @@ interface Props {
   price: number;
 }
 
-// React.FC<Props> - set object type
-// JSX.Element - set return type
+// React.FC<Props> - set object type to Functional Component
+// JSX.Element - set return type to JSX Element
 
 const Card: React.FC<Props> = ({
   companyName,
