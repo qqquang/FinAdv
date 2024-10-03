@@ -5,6 +5,8 @@ import Search from "./Components/Search/Search";
 import { CompanySearch } from "./company";
 import { searchCompanies } from "./api";
 import ListPortfolio from "./Components/Portfolio/ListPortfolio/ListPortfolio";
+import Navbar from "./Components/Navbar/Navbar";
+import Hero from "./Components/Hero/Hero";
 
 function App() {
   const [search, setSearch] = useState<string>("");
@@ -42,21 +44,33 @@ function App() {
       console.error("Error in onSearchSubmit:", error);
     }
   };
-  
+
   const onPortfolioDelete = (e: any) => {
     e.preventDefault();
     const removed = porfolioValues.filter((value) => {
       return value !== e.target[0].value;
     });
     setPortfolioValues(removed);
-  }
+  };
 
   return (
     <div className="App">
-      <Search onClick={onSearchSubmit} search={search} onSearchSubmit={onSearchSubmit} handleSearchChange={handleSearchChange}/>
-      <ListPortfolio porfolioValues={porfolioValues} onPortfolioDelete={onPortfolioDelete}/>
+      <Navbar />
+      <Search
+        onClick={onSearchSubmit}
+        search={search}
+        onSearchSubmit={onSearchSubmit}
+        handleSearchChange={handleSearchChange}
+      />
+      <ListPortfolio
+        portfolioValues={porfolioValues}
+        onPortfolioDelete={onPortfolioDelete}
+      />
       {serverError && <h1>{serverError}</h1>}
-      <CardList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate}/>
+      <CardList
+        searchResults={searchResult}
+        onPortfolioCreate={onPortfolioCreate}
+      />
     </div>
   );
 }
