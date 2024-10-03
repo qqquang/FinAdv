@@ -20,7 +20,7 @@ const Search: React.FC<Props> = ({
   return (
     <div>
       <input value={search} onChange={(e) => handleChange(e)}></input>
-      <button onClick={(e) => onClick(e)} />
+      <button onClick={(e) => onClick(e)}>Search</button>
     </div>
   );
 };

@@ -8,7 +8,7 @@ import { searchCompanies } from "./api";
 function App() {
   const [search, setSearch] = useState<string>("");
   const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
-  const [serverError, setServerError] = useState<string>("");
+  const [serverError, setServerError] = useState<string | null>(null);
 
   // get data from input and display in the console
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +31,8 @@ function App() {
   return (
     <div className="App">
       <Search onClick={onClick} search={search} handleChange={handleChange} />
-      <CardList />
+      {serverError && <h1>{serverError}</h1>}
+      <CardList searchResults={searchResult}/>
     </div>
   );
 }
