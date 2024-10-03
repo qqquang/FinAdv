@@ -13,20 +13,25 @@ function App() {
   // get data from input and display in the console
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-    console.log(e);
   };
 
   const onClick = async (e: SyntheticEvent) => {
-    const result = await searchCompanies(search);
-    
-    // check see if server return string or array of data
-    if(typeof result === "string") {
-      setServerError(result);
-    } else if(Array.isArray(result.data)){
-      setSearchResult(result.data);
+    try {
+      const result = await searchCompanies(search);
+
+      if (typeof result === "string") {
+        setServerError(result);
+      } else if (Array.isArray(result)) {
+        setSearchResult(result); // Assuming result is already the array of CompanySearch
+      } else {
+        setServerError("Unexpected response format.");
+      }
+    } catch (error) {
+      setServerError("An error occurred while fetching data.");
+      console.error("Error in onClick:", error);
     }
-    console.log(searchResult)
   };
+  
 
   return (
     <div className="App">

@@ -11,9 +11,9 @@ const CardList: React.FC<Props> = ({searchResults}: Props): JSX.Element => {
   return (
     <>
     {searchResults.length > 0 ? (
-        searchResults.map((result) => {
+        searchResults.map((result) => (
             <Card id={result.symbol} key={uuidv4()} searchResult={result} />
-        } )
+         ) )
     ) : (
         <h1>No results</h1>
     )
