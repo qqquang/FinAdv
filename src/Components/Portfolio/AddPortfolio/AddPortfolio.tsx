@@ -7,13 +7,14 @@ interface Props {
 
 const AddPortfolio = ({onPortFolioCreate, symbol}: Props) => {
   return (
-    <button onClick={onPortFolioCreate} type="submit">Add to Portfolio</button>
+    /* <button onClick={onPortFolioCreate} type="submit">Add to Portfolio</button> */
 
-    /* <form onSubmit={onPortFolioCreate}>
+    
+    <form onSubmit={onPortFolioCreate}>
       <input readOnly={true} hidden={true} value={symbol} /> 
       <button type="submit">Add to Portfolio</button>
 
-    </form> */
+    </form>
   )
 }
 

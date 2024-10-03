@@ -4,20 +4,25 @@ import CardList from "./Components/CardList/CardList";
 import Search from "./Components/Search/Search";
 import { CompanySearch } from "./company";
 import { searchCompanies } from "./api";
+import ListPortfolio from "./Components/Portfolio/ListPortfolio/ListPortfolio";
 
 function App() {
   const [search, setSearch] = useState<string>("");
   const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [porfolioValues, setPortfolioValues] = useState<string[]>([]);
 
   // get data from input and display in the console
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
-  const onPortfolioCreate = (e: SyntheticEvent) => {
+  const onPortfolioCreate = (e: any) => {
     e.preventDefault();
-    console.log(e);
+    const exists = porfolioValues.find((value) => value === e.target[0].value);
+    if (exists) return;
+    const updatedPorfolio = [...porfolioValues, e.target[0].value];
+    setPortfolioValues(updatedPorfolio);
   };
 
   const onSearchSubmit = async (e: SyntheticEvent) => {
@@ -38,10 +43,18 @@ function App() {
     }
   };
   
+  const onPortfolioDelete = (e: any) => {
+    e.preventDefault();
+    const removed = porfolioValues.filter((value) => {
+      return value !== e.target[0].value;
+    });
+    setPortfolioValues(removed);
+  }
 
   return (
     <div className="App">
       <Search onClick={onSearchSubmit} search={search} onSearchSubmit={onSearchSubmit} handleSearchChange={handleSearchChange}/>
+      <ListPortfolio porfolioValues={porfolioValues} onPortfolioDelete={onPortfolioDelete}/>
       {serverError && <h1>{serverError}</h1>}
       <CardList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate}/>
     </div>
