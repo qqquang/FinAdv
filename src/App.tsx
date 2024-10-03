@@ -11,12 +11,18 @@ function App() {
   const [serverError, setServerError] = useState<string | null>(null);
 
   // get data from input and display in the console
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
-  const onClick = async (e: SyntheticEvent) => {
+  const onPortfolioCreate = (e: SyntheticEvent) => {
+    e.preventDefault();
+    console.log(e);
+  };
+
+  const onSearchSubmit = async (e: SyntheticEvent) => {
     try {
+      e.preventDefault();
       const result = await searchCompanies(search);
 
       if (typeof result === "string") {
@@ -28,16 +34,16 @@ function App() {
       }
     } catch (error) {
       setServerError("An error occurred while fetching data.");
-      console.error("Error in onClick:", error);
+      console.error("Error in onSearchSubmit:", error);
     }
   };
   
 
   return (
     <div className="App">
-      <Search onClick={onClick} search={search} handleChange={handleChange} />
+      <Search onClick={onSearchSubmit} search={search} onSearchSubmit={onSearchSubmit} handleSearchChange={handleSearchChange}/>
       {serverError && <h1>{serverError}</h1>}
-      <CardList searchResults={searchResult}/>
+      <CardList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate}/>
     </div>
   );
 }
