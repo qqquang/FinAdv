@@ -11,7 +11,7 @@ const Navbar = (props: Props) => {
           <Link to="/">
             <img src={finSharkLogo} alt="" />
           </Link>
-          
+
           <div className="hidden font-bold lg:flex">
             <Link to="/search" className="text-black hover:text-darkBlue">
               Search

@@ -3,15 +3,48 @@ import App from "../App";
 import HomePage from "../Pages/HomePage/HomePage";
 import SearchPage from "../Pages/SearchPage/SearchPage";
 import CompanyPage from "../Pages/CompanyPage/CompanyPage";
+import CompanyProfile from "../Components/CompanyProfile/CompanyProfile";
+import IncomeStatement from "../Components/IncomeStatement/IncomeStatement";
 
+// Define the application's routes using React Router's createBrowserRouter
 export const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
+  {
+    // Main root path ("/"), renders the App component as the layout
+    path: "/",
+    element: <App />,
+    
+    // Define nested routes (children) for different pages within the App component
+    children: [
+      { 
+        // Home page route ("/")
+        path: "", 
+        element: <HomePage /> 
+      },
+      { 
+        // Search page route ("/search")
+        path: "search", 
+        element: <SearchPage /> 
+      },
+      {
+        // Dynamic route for company details ("/company/:ticker")
+        // ":ticker" is a URL parameter that represents a specific company
+        path: "company/:ticker",
+        element: <CompanyPage />,
+        
+        // Nested routes within the CompanyPage component
         children: [
-            { path: "", element: <HomePage /> },
-            { path: "search", element: <SearchPage /> },
-            { path: "company/:ticker", element: <CompanyPage /> },
-        ]
-    }
-])
+          { 
+            // Route for displaying the company profile ("/company/:ticker/company-profile")
+            path: "company-profile", 
+            element: <CompanyProfile /> 
+          },
+          { 
+            // Route for displaying the income statement ("/company/:ticker/income-statement")
+            path: "income-statement", 
+            element: <IncomeStatement /> 
+          },
+        ],
+      },
+    ],
+  },
+]);
