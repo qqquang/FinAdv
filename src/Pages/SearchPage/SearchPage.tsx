@@ -35,7 +35,7 @@ const SearchPage = (props: Props) => {
    */
   const onPortfolioCreate = (e: any) => {
     e.preventDefault();
-    
+
     // Check if the portfolio item already exists
     const exists = portfolioValues.find((value) => value === e.target[0].value);
     if (exists) return; // Prevent duplicates
@@ -77,7 +77,7 @@ const SearchPage = (props: Props) => {
    */
   const onPortfolioDelete = (e: any) => {
     e.preventDefault();
-    
+
     // Filter out the portfolio item to be removed
     const removed = portfolioValues.filter((value) => {
       return value !== e.target[0].value;
