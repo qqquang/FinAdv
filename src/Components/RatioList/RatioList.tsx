@@ -8,11 +8,13 @@ interface Props {
 }
 
 // Functional component for rendering a list of ratios or company attributes
-const RatioList = ({config, data}: Props) => {
+const RatioList = ({ config, data }: Props) => {
   // Map through the 'configs' array to generate list items
   const renderedRows = config.map((row: any) => {
     return (
-      <li key={uuidv4()} className="py-3 sm:py-4"> {/* Generate a unique key for each list item */}
+      <li key={uuidv4()} className="py-3 sm:py-4">
+        {" "}
+        {/* Generate a unique key for each list item */}
         <div className="flex items-center space-x-4">
           <div className="flex-1 min-w-0">
             {/* Display the label for the current configuration */}

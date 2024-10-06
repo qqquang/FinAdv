@@ -27,8 +27,8 @@ const Table = ({ config, data }: Props) => {
     <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
       <table className="min-w-full divide-y divide-gray-200 m-5">
         <thead className="bg-gray-50">
-					<tr>{renderedHeaders}</tr>
-				</thead>
+          <tr>{renderedHeaders}</tr>
+        </thead>
         <tbody>{renderedRows}</tbody>
       </table>
     </div>

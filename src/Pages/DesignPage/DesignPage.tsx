@@ -6,12 +6,12 @@ import { testIncomeStatementData } from "../../Components/Table/testData";
 interface Props {}
 
 const tableConfig = [
-    {
-      label: "Market Cap",
-      render: (company: CompanyKeyMetrics) => company.marketCapTTM,
-      subTitle: "Total value of all a company's shares of stock",
-    },
-]
+  {
+    label: "Market Cap",
+    render: (company: CompanyKeyMetrics) => company.marketCapTTM,
+    subTitle: "Total value of all a company's shares of stock",
+  },
+];
 
 const DesignPage = (props: Props) => {
   return (
@@ -22,7 +22,7 @@ const DesignPage = (props: Props) => {
         design aspects of the app
       </h2>
       <RatioList data={testIncomeStatementData} config={tableConfig} />
-      <Table data={testIncomeStatementData} config={tableConfig}/>
+      <Table data={testIncomeStatementData} config={tableConfig} />
     </>
   );
 };

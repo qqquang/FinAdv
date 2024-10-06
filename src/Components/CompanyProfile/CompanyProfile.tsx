@@ -4,7 +4,10 @@ import { useOutletContext } from "react-router";
 import { getKeyMetrics } from "../../api";
 import RatioList from "../RatioList/RatioList";
 import Spinner from "../Spinner/Spinner";
-import { formatLargeNonMonetaryNumber, formatRatio } from "../Helpers/NumberFormatting";
+import {
+  formatLargeNonMonetaryNumber,
+  formatRatio,
+} from "../Helpers/NumberFormatting";
 
 interface Props {}
 
@@ -77,7 +80,6 @@ const tableConfig = [
   },
 ];
 
-
 const CompanyProfile = (props: Props) => {
   const ticker = useOutletContext<string>();
   const [companyData, setCompanyData] = useState<CompanyKeyMetrics>();
@@ -92,14 +94,15 @@ const CompanyProfile = (props: Props) => {
     getCompanyKeyMetrics();
   }, []);
 
-  return(
-  <>
-    {companyData ? (
-      <RatioList data={companyData} config={tableConfig} />
-    ): (
-      <Spinner />
-    )}
-  </>)
+  return (
+    <>
+      {companyData ? (
+        <RatioList data={companyData} config={tableConfig} />
+      ) : (
+        <Spinner />
+      )}
+    </>
+  );
 };
 
 export default CompanyProfile;

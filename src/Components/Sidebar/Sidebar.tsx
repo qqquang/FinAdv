@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { FaHome, FaTable, FaMoneyBill } from "react-icons/fa";
 import { FaTableCells } from "react-icons/fa6";
 
-
 interface Props {}
 
 const Sidebar = (props: Props) => {
@@ -43,7 +42,6 @@ const Sidebar = (props: Props) => {
               <FaMoneyBill />
               <h6 className="ml-3">Cashflow Statement</h6>
             </Link>
-            
           </div>
         </div>
       </div>
