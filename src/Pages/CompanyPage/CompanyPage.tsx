@@ -5,6 +5,8 @@ import { getCompanyProfile } from "../../api";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import CompanyDashBoard from "../../Components/CompanyDashBoard/CompanyDashBoard";
 import Tile from "../../Components/Tile/Tile";
+import Spinner from "../../Components/Spinner/Spinner";
+import TenKFinder from "../../Components/TenKFinder/TenKFinder";
 
 interface Props {}
 
@@ -35,14 +37,21 @@ const CompanyPage = (props: Props) => {
         // Render the company information if data is available
         <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
           <Sidebar />
-          <CompanyDashBoard>
+          <CompanyDashBoard ticker={ticker!}>
             {/* Display company name in a Tile component */}
             <Tile title="Company Name" data={company.companyName} />
+            <Tile title="Price" data={"$" + company.price.toString()} />
+            <Tile title="Discounted Cash Flow" data={company.dcf.toString()} />
+            <Tile title="Sector" data={company.sector} />
+            <TenKFinder ticker={company.symbol} />
+            <p className="bg-white shadow rounded text-medium font-medium text-gray-900 p-3 mt-1 m-4">
+              {company.description}
+            </p>
           </CompanyDashBoard>
         </div>
       ) : (
         // Display a fallback message if company data is not found
-        <div>Company not found</div>
+        <Spinner />
       )}
     </>
   );

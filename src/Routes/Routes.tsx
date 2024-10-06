@@ -6,6 +6,8 @@ import CompanyPage from "../Pages/CompanyPage/CompanyPage";
 import CompanyProfile from "../Components/CompanyProfile/CompanyProfile";
 import IncomeStatement from "../Components/IncomeStatement/IncomeStatement";
 import DesignPage from "../Pages/DesignPage/DesignPage";
+import BalanceSheet from "../Components/BalanceSheet/BalanceSheet";
+import CashflowStatement from "../Components/CashflowStatement/CashflowStatement";
 
 // Define the application's routes using React Router's createBrowserRouter
 export const router = createBrowserRouter([
@@ -48,6 +50,16 @@ export const router = createBrowserRouter([
             // Route for displaying the income statement ("/company/:ticker/income-statement")
             path: "income-statement",
             element: <IncomeStatement />,
+          },
+          {
+            // Route for displaying the company profile ("/company/:ticker/balance-sheet")
+            path: "balance-sheet",
+            element: <BalanceSheet />,
+          },
+          {
+            // Route for displaying the company profile ("/company/:ticker/balance-sheet")
+            path: "cashflow-statement",
+            element: <CashflowStatement />,
           },
         ],
       },
